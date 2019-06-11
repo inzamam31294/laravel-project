@@ -20,8 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', 'Api\RegisterControllerApi@register');
 Route::post('/login', 'Api\LoginControllerApi@login');
+Route::post('/forgetpassword', 'Api\ForgetPasswordControllerApi@sendResetLinkEmail');
+Route::post('/resetpassword', 'Api\resetPasswordControllerApi@reset');
 
-Route::group(['middleware' => ['jwt.verify']], function(){
+Route::group(['middleware' => ['auth.jwt']], function(){
     Route::get('users', 'UserController@getAuthenticatedUser');
+    Route::post('payload', 'UserController@payload');
 });
+
 // Route::get('users', 'UserController@getAuthenticatedUser');

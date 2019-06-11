@@ -27,7 +27,7 @@ class JwtMiddleware
             {
                 return response()->json(['status' => 'Token invalid!']);
             }
-            else if($exc instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException)
+            else if($exc instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException)
             {
                 return response()->json(['status' => 'Token Expired!']);
             }

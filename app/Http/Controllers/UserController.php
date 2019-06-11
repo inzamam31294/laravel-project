@@ -36,11 +36,11 @@ class UserController extends Controller
         {
             return response()->json(['token expired'], $exc->getStatusCode());
         }
-        catch(Tymon\JWTAuth\Exceptions\TokenExpiredException $exc)
+        catch(Tymon\JWTAuth\Exceptions\TokenInvalidException $exc)
         {
             return response()->json(['token invalid'], $exc->getStatusCode());
         }
-        catch(Tymon\JWTAuth\Exceptions\TokenExpiredException $exc)
+        catch(Tymon\JWTAuth\Exceptions\JWTException $exc)
         {
             return response()->json(['token absent'], $exc->getStatusCode());
         }
@@ -50,7 +50,10 @@ class UserController extends Controller
     }
 
 
-
+    public function payload()
+    {
+        return JWTAuth::payload();
+    }
 
 
 

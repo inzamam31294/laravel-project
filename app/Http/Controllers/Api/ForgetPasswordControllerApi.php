@@ -4,29 +4,22 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
-class ResetPasswordController extends Controller
+class ForgotPasswordControllerApi extends Controller
 {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
     |--------------------------------------------------------------------------
     |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
+    | This controller is responsible for handling password reset emails and
+    | includes a trait which assists in sending these notifications from
+    | your application to your users. Feel free to explore this trait.
     |
     */
 
-    use ResetsPasswords;
-
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+    use SendsPasswordResetEmails;
 
     /**
      * Create a new controller instance.
@@ -37,4 +30,7 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    
 }
+
