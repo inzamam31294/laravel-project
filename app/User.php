@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\PasswordResetNotifier;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,4 +48,15 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+ * Send the password reset notification.
+ *
+ * @param  string  $token
+ * @return void
+ */
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new PasswordResetNotifier($token));
+}
 }
